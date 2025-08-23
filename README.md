@@ -1,7 +1,7 @@
-World Life Expectancy (SQL) — Data Cleaning & EDA
+##World Life Expectancy (SQL) — Data Cleaning & EDA
 A SQL-only project that prepares and analyzes a global life expectancy dataset to uncover country-level trends, global patterns, GDP/BMI relationships, and adult mortality dynamics.
 
-Project Overview
+#Project Overview
 This repository contains a complete workflow to:
 
 Clean a raw life expectancy dataset (remove duplicates, fill missing values, standardize fields)
