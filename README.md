@@ -1,49 +1,66 @@
-World Life Expectancy (SQL) — Project README
-A concise, copy‑paste ready README describing a SQL project for cleaning and analyzing a World Life Expectancy dataset. This version intentionally avoids code blocks.
+World Life Expectancy (SQL) — Data Cleaning & EDA
+A comprehensive SQL project exploring global life expectancy trends, development status differences, GDP/BMI relationships, and adult mortality over time. This repository focuses on robust data cleaning and exploratory analysis using MySQL.
 
-Overview
-This repository provides a complete, SQL‑only workflow to:
+📊 Project Overview
+This project prepares a world life expectancy dataset for analysis and answers practical questions around trends, socioeconomic relationships, and cross-country differences.
 
-Clean a raw world life expectancy dataset (deduplicate, standardize, and impute key fields)
+Key Questions Addressed
+How much did life expectancy change for each country over the observed period?
 
-Explore trends and relationships across life expectancy, GDP, BMI, and adult mortality
+What is the global trend in average life expectancy by year?
 
-It includes two SQL scripts:
+How does average GDP relate to average life expectancy across countries?
 
-Data Cleaning: world-life-expectancy.sql
+How do Developed vs Developing countries differ in average life expectancy?
 
-Exploratory Data Analysis (EDA): EDA-of-world-life-expectancy.sql
+What patterns emerge between BMI and life expectancy?
 
-Key Features
-Duplicate detection and removal using a country + year business key
-
-Filling missing development Status per country (Developed/Developing)
-
-Imputing missing life expectancy values using neighbor-year averages
-
-Trend analysis of life expectancy over time
-
-Comparisons of life expectancy by GDP, BMI, and development status
-
-Rolling adult mortality summaries by country
+How do rolling totals of adult mortality evolve over time within each country?
 
 Repository Structure
 sql/
 
-world-life-expectancy.sql (Data Cleaning)
+world-life-expectancy.sql — Data Cleaning
 
-EDA-of-world-life-expectancy.sql (EDA)
+EDA-of-world-life-expectancy.sql — Exploratory Data Analysis
 
 data/
 
-world_life_expectancy.csv (add your dataset here)
+world_life_expectancy.csv — Place your dataset here
 
 README.md
 
-Requirements
-MySQL 8.0 or newer (window functions required)
+🧰 What’s Included
+Data Cleaning
 
-A database table named “world_life_expectancy” with columns:
+Identify and remove duplicate records using Country + Year
+
+Backfill missing development Status consistently within each country
+
+Impute missing life expectancy values using neighbor-year averages
+
+Ensure consistent handling of blanks vs NULLs
+
+Exploratory Data Analysis
+
+Per-country life expectancy change (min vs max and total increase)
+
+Global yearly averages of life expectancy
+
+Country-level comparisons: average life expectancy vs average GDP
+
+GDP cohort comparison (e.g., threshold of 1500) for life expectancy
+
+Developed vs Developing comparisons: averages and distinct country counts
+
+BMI vs life expectancy relationships
+
+Rolling sums of adult mortality over time by country
+
+Requirements
+MySQL 8.0+ (window functions required)
+
+A database table named “world_life_expectancy” with the following columns:
 
 Row_ID (unique identifier)
 
@@ -63,57 +80,40 @@ Adult Mortality
 
 Notes:
 
-Columns with spaces should be referenced using backticks in SQL.
+Columns that include spaces should be referenced with backticks in SQL.
 
-If the dataset stores missing values as empty strings instead of NULL, adjust conditions accordingly.
+If the dataset stores missing values as empty strings rather than NULL, adjust checks accordingly.
 
-How It Works
-Data Cleaning
+🚀 How to Use
+Add the dataset file to the data directory and import it into a MySQL database as “world_life_expectancy”.
 
-Inspect and verify raw data structure
+Run the Data Cleaning script to:
 
-Identify duplicate records by country and year
+Remove duplicates based on Country + Year
 
-Remove exact duplicates while preserving one canonical record
+Fill missing Status using existing values within the same country
 
-Backfill missing Status per country based on existing entries
+Impute missing Life expectancy using averages of adjacent years
 
-Impute missing life expectancy by averaging the previous and next year within the same country
+Run the EDA script to:
 
-EDA
+Generate global and per-country trend insights
 
-Calculate per‑country change in life expectancy across the observed period
+Compare GDP cohorts and development status groups
 
-Compute global average life expectancy per year to visualize trend
+Analyze BMI relationships and rolling adult mortality
 
-Compare country‑level average life expectancy against average GDP
+Customize thresholds and conditions (e.g., GDP cutoff) to suit analytical goals.
 
-Split cohorts by GDP threshold (e.g., 1500) to compare life expectancy
+Key Insights & Outcomes
+Clean, deduplicated, and analysis-ready dataset
 
-Summarize life expectancy by development Status and count distinct countries
+Quantified life expectancy increases by country
 
-Explore BMI and life expectancy at the country level
+Year-over-year global life expectancy trend
 
-Produce rolling sums of adult mortality per country over time
+Relationships between GDP/BMI and life expectancy
 
-Usage
-Place the dataset CSV in the data directory and import it into a MySQL database as “world_life_expectancy”.
+Clear comparisons between Developed and Developing groups
 
-Run the Data Cleaning script first to remove duplicates and fill missing values.
-
-Run the EDA script to generate analyses and insights.
-
-Adjust thresholds (e.g., GDP split) and filters to suit specific research questions.
-
-Expected Outcomes
-A cleaned, deduplicated table suitable for downstream analysis
-
-Quantified increase in life expectancy by country
-
-Year‑over‑year global trend in life expectancy
-
-Insights into relationships between GDP, BMI, and life expectancy
-
-Comparative metrics for Developed vs Developing countries
-
-Rolling indicators of adult mortality across time
+Rolling adult mortality indicators by country
